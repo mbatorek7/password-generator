@@ -30,12 +30,23 @@ function generatePassword () {
       numeric != "Y") {
         //user didn't choose at least one criteria
         alert("I'm sorry. You didn't meet the criteria for a password. Please go back and choose at least one option.");
-
-    } else if () {
-        
-
+    } else if (smallLetters == "Y") { //check if lowercase was a chosen criteria
+        //check if uppercase was a chosen criteria
+        if(bigLetters == "Y") {
+          //check if special characters was chosen
+          if(specialChar == "Y") {
+            //check if numbers were chosen
+            if(numeric == "Y") {
+              var outcome1 = lower + upper + special + num;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += chars.substring(index, index +1);
+              }
+              window.alert("This is your password: " + password);
+            }
+          }
+        }
     }
-
   }
 }
 
