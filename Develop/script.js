@@ -5,6 +5,7 @@ function generatePassword () {
   var special = "!@#$%^&*()";
   var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var num = "0123456789";
+  var password = "";
 
   // enter desired length
   var passLength = window.prompt("Enter the desired password length:");
@@ -37,17 +38,92 @@ function generatePassword () {
           if(specialChar == "Y") {
             //check if numbers were chosen
             if(numeric == "Y") {
+              //all criteria has been chosen
               var outcome1 = lower + upper + special + num;
               for(var i = 0; i <= passLength; i++) {
                 var index = Math.floor(Math.random() * outcome1.length);
-                password += chars.substring(index, index +1);
+                password += outcome1.substring(index, index +1);
               }
-              window.alert("This is your password: " + password);
+            } else { //numbers were not chosen
+              var outcome1 = lower + upper + special;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
+            }
+          } else { //if special characters was not chosen
+            //check if numbers were chosen
+            if(numeric == "Y") {
+              //everything has been chosen except special characters
+              var outcome1 = lower + upper + num;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
+            } else { //special and num was not chosen
+              //only upper and lower has been chosen
+              var outcome1 = lower + upper;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
+            }
+          }
+        } else { //if uppercase was not chosen
+          //if special characters was chosen
+          if(specialChar == "Y") {
+            //if numbers were chosen
+            if(numeric == "Y") {
+              //everything except upper has been chosen
+              var outcome1 = lower + special + num;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
             }
           }
         }
+    } else { //if lowercase was not chosen
+      //if uppercase was chosen
+      if(bigLetters == "Y") {
+        //if special characters was chosen
+        if(specialChar == "Y") {
+          //if numbers were chosen
+          if(numeric == "Y") {
+            //everything except lower has been chosen
+            var outcome1 = upper + special + num;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
+          }
+        } else { //if upper,lower, and special is not chosen
+          //if numbers were chosen
+          if(numeric == "Y") {
+            //only numbers has been chosen
+            var outcome1 = num;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
+          }
+        }
+      } else { //if uppercase AND lowercase was not chosen
+        //if special characters was chosen
+        if(specialChar == "Y") {
+          //if numbers were chosen
+          if(numeric == "Y") {
+            var outcome1 = special + num;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
+          }
+        }
+      }
     }
   }
+  return password;
 }
 
 // Get references to the #generate element
