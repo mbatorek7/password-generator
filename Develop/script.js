@@ -44,6 +44,7 @@ function generatePassword () {
                 var index = Math.floor(Math.random() * outcome1.length);
                 password += outcome1.substring(index, index +1);
               }
+              //-----------------------------------------------------------------------------NUMBERS NOT CHOSEN SKIP HERE-----------------------------------------------------
             } else { //numbers were not chosen
               var outcome1 = lower + upper + special;
               for(var i = 0; i <= passLength; i++) {
@@ -51,6 +52,7 @@ function generatePassword () {
                 password += outcome1.substring(index, index +1);
               }
             }
+            //-------------------------------------------------------------------------SPECIAL CHAR NOT CHOSEN SKIP HERE-------------------------------------------------------
           } else { //if special characters was not chosen
             //check if numbers were chosen
             if(numeric == "Y") {
@@ -69,6 +71,7 @@ function generatePassword () {
               }
             }
           }
+          //---------------------------------------------------------------------------UPPERCASE NOT CHOSEN SKIP HERE----------------------------------------------------------------
         } else { //if uppercase was not chosen
           //if special characters was chosen
           if(specialChar == "Y") {
@@ -80,9 +83,34 @@ function generatePassword () {
                 var index = Math.floor(Math.random() * outcome1.length);
                 password += outcome1.substring(index, index +1);
               }
+            } else { //numbers were not chosen
+              //only lower and special were chosen
+              var outcome1 = lower + special;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
+            }
+          } else { //upper and special char was not chosen
+            //if numbers were chosen
+            if(numeric == "Y") {
+              //everything except upper and special has been chosen
+              var outcome1 = lower + num;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
+            } else { //upper, special, and num were not chosen
+              //only lowercase password
+              var outcome1 = lower;
+              for(var i = 0; i <= passLength; i++) {
+                var index = Math.floor(Math.random() * outcome1.length);
+                password += outcome1.substring(index, index +1);
+              }
             }
           }
         }
+        //-----------------------------------------------LOWER CASE NOT CHOSEN SKIP HERE---------------------------------------------------
     } else { //if lowercase was not chosen
       //if uppercase was chosen
       if(bigLetters == "Y") {
@@ -96,12 +124,25 @@ function generatePassword () {
               var index = Math.floor(Math.random() * outcome1.length);
               password += outcome1.substring(index, index +1);
             }
+          } else { //lower and num was not chosen
+            var outcome1 = upper + special;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
           }
-        } else { //if upper,lower, and special is not chosen
+        } else { //if lower and special is not chosen
           //if numbers were chosen
           if(numeric == "Y") {
-            //only numbers has been chosen
-            var outcome1 = num;
+            //only upper and numbers has been chosen
+            var outcome1 = upper + num;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
+          } else { //if lower, special, and num are not chosen
+            //only uppercase password
+            var outcome1 = upper;
             for(var i = 0; i <= passLength; i++) {
               var index = Math.floor(Math.random() * outcome1.length);
               password += outcome1.substring(index, index +1);
@@ -114,6 +155,23 @@ function generatePassword () {
           //if numbers were chosen
           if(numeric == "Y") {
             var outcome1 = special + num;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
+          } else { //if upper, lower, and num are not chosen
+            //only special char password
+            var outcome1 = special;
+            for(var i = 0; i <= passLength; i++) {
+              var index = Math.floor(Math.random() * outcome1.length);
+              password += outcome1.substring(index, index +1);
+            }
+          }
+        } else { //if lower, upper, and special are not chosen
+          //if numbers were chosen
+          if(numeric == "Y") {
+            //only numbers password
+            var outcome1 = num;
             for(var i = 0; i <= passLength; i++) {
               var index = Math.floor(Math.random() * outcome1.length);
               password += outcome1.substring(index, index +1);
